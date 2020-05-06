@@ -6,6 +6,7 @@ client.on('ready', () => {
 })
 
 client.on('message', async msg => {
+  if (message.author.bot) return;
     var str =  msg.content;
     const rsp = /^[rsp]$/g;
   if (str === '!npee') {
@@ -37,9 +38,13 @@ client.on('message', async msg => {
       }
     });
     msg.channel.send('botの手:'+n[0]+" あなたの手:"+n[1]+" 結果:"+p);
-  }else if(str == "!jsontest"){
-    const jsonObject = JSON.parse(require('fs').readFileSync('./joke.json', 'utf8'));
-    msg.channel.send(jsonObject);
+  }else if(str.substring(0,7) === '!debug ' && message.guild) {
+
+    const role = message.guild.roles.cache.find(roles => roles.name === '鯖缶')
+
+    if (!message.member.roles.cache.has(role.id)) return;
+
+    message.channel.send('success');
   }
 })
 //test
