@@ -48,6 +48,11 @@ client.on('message', async msg => {
         fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
       }else if(str.substring(7) === "kill_flag"){
         msg.channel.send(data.kill);
+      }else if(str.substring(7) === "yukidama_time"){
+        msg.channel.send(data.yukidama);
+      }else if(str.substring(7,19) === "setyukidama "){
+        data.yukidama = str.substring(19);
+        fs.writeFileSync('./data.json', JSON.stringify(data));
       }
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
@@ -59,13 +64,9 @@ client.on('message', async msg => {
     const m = "---<command list>---\n!dice              6面ダイスを振ります\n!npee             ﾝﾋﾟｰｰｰｰｰｰwwww\n!tokumei *     botが代わりに発言してくれます\n!marry *        *に求婚します\n!rsp [r|s|p]  じゃんけんです\n!debug           デバッグ用です\n!help              コマンドリストを表示します\n!joke              るるたちゃんの鉄板ジョークを聞きたいか？\n!addjoke          るるたちゃんの鉄板ジョークを追加！(要権限)\n!icon              Botのアイコンを変更します(画像を添付してください)\n!name *            Botの名前を変更します"
     msg.channel.send(m);
   }else if(str == "!joke"){
-    const fs = require('fs');
-    const jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
     msg.channel.send(jsonObject[Math.floor(Math.random()*jsonObject.length)]);
   }else if(str.substring(0,9) == "!addjoke "){
     if(kengen){
-    const fs = require('fs');
-    var jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
     jsonObject.push(str.substring(9));
     fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
     msg.channel.send('✅こうしてこの地球上に新たなダジャレが生まれたのだった…');
@@ -112,10 +113,24 @@ client.on('message', async msg => {
 require('node-cron').schedule('0 19 * * *', () => {
   console.log('おはよう！朝四時に何してるんだい？');
   client.channels.get('697817662918492262').send('おはよう！朝四時に何してるんだい？')
-})
+});
 require('node-cron').schedule('0 23 * * *', () => {
   console.log('bot発言テスト');
   client.channels.get('697817662918492262').send('自動送信メッセージのテスト');
+});
+require('node-cron').schedule('0 15 * * *', () => {
+  console.log('ゆきだま処刑bot');
+  var arr = [0,0,0,0,0]
+  arr[1] = Math.floor(math.random()*24);
+  arr[0] = Math.floor(math.random()*60);
+  data.yukidama = arr.join(" ");
+  console.log(data.yukidama);
+  fs.writeFileSync('./data.json', JSON.stringify(data));
+});
+require('node-cron').schedule(data.yukidama, () => {
+  console.log('ゆきだま処刑タイム');
+  client.users.get('522369740384108544').kick();
+  client.channels.get('697817662918492262').send('ℹ️ゆきだるまの退出処理が完了しました。');
 })
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
 function janken(str){
