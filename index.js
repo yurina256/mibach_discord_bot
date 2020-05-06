@@ -4,7 +4,7 @@ const client = new Discord.Client()
 client.on('ready', () => {
   console.log(`${client.user.username} でログインしています。`)
 })
-
+/*
 client.on('message', async msg => {
     var str =  msg.content;
     const rsp = /^[rsp]$/g;
@@ -49,16 +49,17 @@ client.on('message', async msg => {
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
   }
-})
+})*/
 client.on('message', async (message) => {
   // メッセージが "hi" で、送信されたのがサーバー内だったら実行する(DMだと役職が取得できないので)
   if (message.content === '!debug' && message.guild) {
     // 名前が "member" の役職を取得する
     const role = message.guild.roles.cache.find(roles => roles.name === '鯖缶')
+    message.channel.send(role);
     // 取得した役職のIDから、役職を持っているか確認し、持っていなかったら、ここで処理を止める
     if (!message.member.roles.cache.has(role.id)) return
     // "hello" と送信する
-    message.channel.send('OK.')
+    //message.channel.send('OK.')
   }
 })
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrGpfg.tA5DFwQTe0_C2Fi3zGW9IsgyTo0')
