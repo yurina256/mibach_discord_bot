@@ -104,6 +104,8 @@ client.on('message', async msg => {
     if (!file) return // 添付ファイルがなかったらスルー
     if (!file.height && !file.width) return // 画像じゃなかったらスルー
     client.user.setAvatar(file.url)
+  }else if(str.substring(0,6) === "!name "){
+    msg.guild.members.get(client.user.id).setNickname(str.substring(6));
   }
   console.log(str);
 });
