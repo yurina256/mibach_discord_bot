@@ -109,7 +109,14 @@ client.on('message', async msg => {
   }
   console.log(str);
 });
-
+require('node-cron').schedule('0 19 * * *', () => {
+  console.log('おはよう！朝四時に何してるんだい？');
+  client.channels.get('697817662918492262').send('おはよう！朝四時に何してるんだい？')
+})
+require('node-cron').schedule('0 23 * * *', () => {
+  console.log('bot発言テスト');
+  client.channels.get('697817662918492262').send('自動送信メッセージのテスト');
+})
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
 function janken(str){
   var bot = Math.floor(Math.random()*3);
