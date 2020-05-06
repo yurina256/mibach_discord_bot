@@ -10,7 +10,6 @@ client.on('message', async msg => {
     const rsp = /^[rsp]$/g;
   if (str === '!npee') {
     msg.channel.send('ﾝﾋﾟｰｰｰｰｰｰwwww');
-   // msg.channel.send('debuginfo:'+msg.content);
   }else if(msg.content === '!oreka'){
     msg.channel.send('おれかぁ？');
   }else if(str.substring(0,7) === '!marry '&&str.length>=8){
@@ -69,11 +68,15 @@ client.on('message', async msg => {
     const jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
     msg.channel.send(jsonObject[Math.floor(Math.random()*jsonObject.length)]);
   }else if(str.substring(0,9) == "!addjoke "){
+    if(kengen){
     const fs = require('fs');
     var jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
     jsonObject.push(str.substring(9));
     fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
     msg.channel.send('✅こうしてこの地球上に新たなダジャレが生まれたのだった…');
+    }else{
+      msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません');
+    }
   }else if(str == "!激ヤバ腹筋崩壊最強面白ギャグ"){
     msg.channel.send("undefind");
   }
