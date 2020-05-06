@@ -41,7 +41,9 @@ client.on('message', async msg => {
     //const role = msg.member.roles.cache.has('707408548019306556')
     //msg.channel.send(role);
     // 取得した役職のIDから、役職を持っているか確認し、持っていなかったら、ここで処理を止める
-    var kengen = msg.member.roles.cache.has('707408548019306556');
+    var kengen = msg.member.roles.has('707408548019306556');
+    console.log(kengen);
+   //msg.channel.send(kengen);
     if (!kengen){
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません');
     }else{
@@ -49,6 +51,7 @@ client.on('message', async msg => {
     }
   }
 })
+client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
 function janken(str){
   var bot = Math.floor(Math.random()*3);
   var ans = "";
