@@ -39,7 +39,7 @@ client.on('message', async msg => {
     msg.channel.send('botの手:'+n[0]+" あなたの手:"+n[1]+" 結果:"+p);
   }else if(str == "!jsontest"){
     const jsonObject = JSON.parse(require('fs').readFileSync('./joke.json', 'utf8'));
-    msg.channel.send(jsonObject[0]);
+    msg.channel.send(jsonObject);
   }
 })
 //test
