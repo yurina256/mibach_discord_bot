@@ -41,13 +41,23 @@ client.on('message', async msg => {
     //const role = msg.member.roles.cache.has('707408548019306556')
     //msg.channel.send(role);
     // 取得した役職のIDから、役職を持っているか確認し、持っていなかったら、ここで処理を止める
-    var kengen = msg.member.roles.cache.has('707408548019306556');
+    var kengen = msg.member.roles.has('707408548019306556');
     if (!kengen){
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません');
     }else{
       if(str.substring(7) == "jsontest"){
-        const jsonObject = JSON.parse(fs.readFileSync('./input.json', 'utf8'));
+        const fs = require('fs');
+        const jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
         msg.channel.send(jsonObject[0]);
+      }else if(str.substring(7,15) == "jsonadd "){
+        const fs = require('fs');
+        var jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
+        jsonObject.push(str.substring(15));
+        fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
+      }else if(str.substring(7) === "joke"){
+        const fs = require('fs');
+        const jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
+        msg.channel.send(jsonObject[Math.floor(Math.random()*jsonObject.length)]);
       }
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
