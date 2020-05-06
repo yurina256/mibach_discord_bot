@@ -8,6 +8,7 @@ client.on('message', async msg => {
     var kengen = msg.member.roles.has('707408548019306556');
     var str =  msg.content;
     const rsp = /^[rsp]$/g;
+    if (message.author.bot) return;
   if (str === '!npee') {
     msg.channel.send('ﾝﾋﾟｰｰｰｰｰｰwwww');
   }else if(msg.content === '!oreka'){
@@ -38,7 +39,7 @@ client.on('message', async msg => {
     msg.channel.send('botの手:'+n[0]+" あなたの手:"+n[1]+" 結果:"+p);
   }else if(str.substring(0,6) === '!debug') {
     if (!kengen){
-      msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません');
+      msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません。');
     }else{
       if(str.substring(7) == "jsontest"){
         const fs = require('fs');
@@ -75,12 +76,16 @@ client.on('message', async msg => {
     fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
     msg.channel.send('✅こうしてこの地球上に新たなダジャレが生まれたのだった…');
     }else{
-      msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません');
+      msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません。');
     }
   }else if(str == "!激ヤバ腹筋崩壊最強面白ギャグ"){
     msg.channel.send("undefind");
+  }else if(str == "さて"){
+    msg.channel.send("さてじゃないんだよ");
+    msg.member.kick();
   }
 });
+
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
 function janken(str){
   var bot = Math.floor(Math.random()*3);
