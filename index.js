@@ -46,8 +46,8 @@ client.on('message', async msg => {
       if(str.substring(7,15) === "jsonadd "){
         jsonObject.push(str.substring(15));
         fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
-      }else if(str.substring(7) === "joke"){
-        msg.channel.send(jsonObject[Math.floor(Math.random()*jsonObject.length)]);
+      }else if(str.substring(7) === "kill_flag"){
+        msg.channel.send(data.kill);
       }
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
