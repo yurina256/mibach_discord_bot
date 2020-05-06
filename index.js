@@ -37,9 +37,12 @@ client.on('message', async msg => {
       }
     });
     msg.channel.send('botの手:'+n[0]+" あなたの手:"+n[1]+" 結果:"+p);
+  }else if(str == "!jsontest"){
+    const jsonObject = JSON.parse(require('fs').readFileSync('./joke.json', 'utf8'));
+    msg.channel.send(jsonObject[0]);
   }
 })
-
+//test
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrGpfg.tA5DFwQTe0_C2Fi3zGW9IsgyTo0')
 function janken(str){
   var bot = Math.floor(Math.random()*3);
