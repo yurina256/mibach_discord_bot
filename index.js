@@ -63,6 +63,7 @@ client.on('message', async (message) => {
   }
 })
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrGpfg.tA5DFwQTe0_C2Fi3zGW9IsgyTo0')
+/*
 function janken(str){
   var bot = Math.floor(Math.random()*3);
   var ans = "";
@@ -116,4 +117,4 @@ function janken(str){
       break;
   }
   return [bot,ans]
-}
+}*/
