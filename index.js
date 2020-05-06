@@ -37,8 +37,8 @@ client.on('message', async msg => {
       }
     });
     msg.channel.send('botの手:'+n[0]+" あなたの手:"+n[1]+" 結果:"+p);
-  }else if(str.substring(0,7) === '!debug ') {
-    // 名前が "member" の役職を取得する
+  }else if(str/*.substring(0,7)*/ === '!debug') {
+    // 名前が "鯖缶" の役職を取得する
     const role = message.guild.roles.cache.find(roles => roles.name === '鯖缶')
     // 取得した役職のIDから、役職を持っているか確認し、持っていなかったら、ここで処理を止める
     if (!message.member.roles.cache.has(role.id)){
