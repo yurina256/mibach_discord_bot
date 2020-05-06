@@ -8,8 +8,8 @@ client.on('message', async msg => {
     var kengen = msg.member.roles.has('707408548019306556');
     var str =  msg.content;
     const rsp = /^[rsp]$/g;
-  //  if (message.author.bot) return;
-  if (str === '!npee') {
+  if (message.author.bot){}
+  else if(str === '!npee') {
     msg.channel.send('ﾝﾋﾟｰｰｰｰｰｰwwww');
   }else if(msg.content === '!oreka'){
     msg.channel.send('おれかぁ？');
