@@ -82,6 +82,7 @@ client.on('message', async msg => {
     msg.channel.send("undefind");
   }else if(str == "さて"){
     msg.channel.send("さてじゃないんだよ");
+    msg.member.send('Try again:https://discord.gg/ZF6vAdN')
     msg.member.kick();
   }
 });
