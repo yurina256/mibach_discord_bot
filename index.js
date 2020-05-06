@@ -42,15 +42,25 @@ client.on('message', async msg => {
     //const role = msg.member.roles.cache.has('707408548019306556')
     //msg.channel.send(role);
     // 取得した役職のIDから、役職を持っているか確認し、持っていなかったら、ここで処理を止める
-    //var kengen = msg.member.roles.cache.has('707408548019306556');
-    if (!false){
+    var kengen = msg.member.roles.cache.has('707408548019306556');
+    if (!kengen){
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません');
     }else{
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
   }
 })
-//test
+client.on('message', async (message) => {
+  // メッセージが "hi" で、送信されたのがサーバー内だったら実行する(DMだと役職が取得できないので)
+  if (message.content === '!debug' && message.guild) {
+    // 名前が "member" の役職を取得する
+    const role = message.guild.roles.cache.find(roles => roles.name === '鯖缶')
+    // 取得した役職のIDから、役職を持っているか確認し、持っていなかったら、ここで処理を止める
+    if (!message.member.roles.cache.has(role.id)) return
+    // "hello" と送信する
+    message.channel.send('OK.')
+  }
+})
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrGpfg.tA5DFwQTe0_C2Fi3zGW9IsgyTo0')
 function janken(str){
   var bot = Math.floor(Math.random()*3);
