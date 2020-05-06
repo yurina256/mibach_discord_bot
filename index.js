@@ -48,11 +48,6 @@ client.on('message', async msg => {
         fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
       }else if(str.substring(7) === "kill_flag"){
         msg.channel.send(data.kill);
-      }else if(str.substring(7) === "yukidama_time"){
-        msg.channel.send(data.yukidama);
-      }else if(str.substring(7,19) === "setyukidama "){
-        data.yukidama = str.substring(19);
-        fs.writeFileSync('./data.json', JSON.stringify(data));
       }
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
@@ -118,20 +113,6 @@ require('node-cron').schedule('0 23 * * *', () => {
   console.log('bot発言テスト');
   client.channels.get('697817662918492262').send('自動送信メッセージのテスト');
 });
-require('node-cron').schedule('0 15 * * *', () => {
-  console.log('ゆきだま処刑bot');
-  var arr = [0,0,0,0,0]
-  arr[1] = Math.floor(math.random()*24);
-  arr[0] = Math.floor(math.random()*60);
-  data.yukidama = arr.join(" ");
-  console.log(data.yukidama);
-  fs.writeFileSync('./data.json', JSON.stringify(data));
-});
-require('node-cron').schedule(data.yukidama, () => {
-  console.log('ゆきだま処刑タイム');
-  client.users.get('522369740384108544').kick();
-  client.channels.get('697817662918492262').send('ℹ️ゆきだるまの退出処理が完了しました。');
-})
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
 function janken(str){
   var bot = Math.floor(Math.random()*3);
