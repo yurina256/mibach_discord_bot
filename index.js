@@ -6,7 +6,6 @@ client.on('ready', () => {
 })
 
 client.on('message', async msg => {
-  if (message.author.bot) return;
     var str =  msg.content;
     const rsp = /^[rsp]$/g;
   if (str === '!npee') {
