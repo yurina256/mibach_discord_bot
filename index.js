@@ -73,6 +73,9 @@ client.on('message', async msg => {
     var jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
     jsonObject.push(str.substring(9));
     fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
+    msg.channel.send('✅こうしてこの地球上に新たなダジャレが生まれたのだった…');
+  }else if(str == "!激ヤバ腹筋崩壊最強面白ギャグ"){
+    msg.channel.send("undefind");
   }
 });
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
