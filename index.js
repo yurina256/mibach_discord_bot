@@ -83,6 +83,11 @@ client.on('message', async msg => {
     msg.channel.send("さてじゃないんだよ");
     msg.member.send('Try again:https://discord.gg/ZF6vAdN')
     msg.member.kick();
+  }else if(str == ':emoji_38:'){
+    msg.channel.send("殺してやるよ");
+    msg.member.send('Try again:https://discord.gg/ZF6vAdN')
+    msg.member.kick();
+    msg.channel.send(`_${member.user.tag}は無残な姿で発見されました。_`)
   }
 });
 
