@@ -51,6 +51,9 @@ client.on('message', async msg => {
     var txt = str.substring(9);
     msg.delete();
     msg.channel.send(txt);
+  }else if(str == "!help"){
+    const m = "---<command list>---\n!dice              6面ダイスを振ります\n!npee             ﾝﾋﾟｰｰｰｰｰｰwwww\n!tokumei *     botが代わりに発言してくれます\n!marry *        *に求婚します\n!rsp [r||s||p] じゃんけんです\n!debug           デバッグ用です\n!help              コマンドリストを表示します"
+    msg.channel.send(m);
   }
 });
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
