@@ -42,7 +42,8 @@ client.on('message', async msg => {
     //const role = msg.member.roles.cache.has('707408548019306556')
     //msg.channel.send(role);
     // 取得した役職のIDから、役職を持っているか確認し、持っていなかったら、ここで処理を止める
-    if (!msg.member.roles.cache.has('707408548019306556')){
+    //var kengen = msg.member.roles.cache.has('707408548019306556');
+    if (!false){
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません');
     }else{
       msg.channel.send('✅コマンドの実行に成功しました。');
