@@ -74,11 +74,11 @@ client.on('message', async msg => {
     }
   }else if(str == "!激ヤバ腹筋崩壊最強面白ギャグ"){
     msg.channel.send("undefind");
-  }else if(str == "さて"&&flag){
+  }else if(str == "さて"&&data.kill){
     msg.channel.send("さてじゃないんだよ");
     //msg.member.send('Try again:https://discord.gg/ZF6vAdN')
     msg.member.kick();
-  }else if(str == '<:emoji_38:705716399104065556>'&&flag){
+  }else if(str == '<:emoji_38:705716399104065556>'&&data.kill){
     msg.channel.send("殺してやるよ");
     msg.channel.send(msg.member.user.tag+"は無残な姿で発見されました。");
     msg.member.kick();
