@@ -5,6 +5,7 @@ client.on('ready', () => {
   console.log(`${client.user.username} でログインしています。`)
 })
 client.on('message', async msg => {
+    var kengen = msg.member.roles.has('707408548019306556');
     var str =  msg.content;
     const rsp = /^[rsp]$/g;
   if (str === '!npee') {
@@ -37,11 +38,6 @@ client.on('message', async msg => {
     });
     msg.channel.send('botの手:'+n[0]+" あなたの手:"+n[1]+" 結果:"+p);
   }else if(str.substring(0,6) === '!debug') {
-    // 名前が "鯖缶" の役職を取得する
-    //const role = msg.member.roles.cache.has('707408548019306556')
-    //msg.channel.send(role);
-    // 取得した役職のIDから、役職を持っているか確認し、持っていなかったら、ここで処理を止める
-    var kengen = msg.member.roles.has('707408548019306556');
     if (!kengen){
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません');
     }else{
@@ -66,8 +62,17 @@ client.on('message', async msg => {
     msg.delete();
     msg.channel.send(txt);
   }else if(str == "!help"){
-    const m = "---<command list>---\n!dice              6面ダイスを振ります\n!npee             ﾝﾋﾟｰｰｰｰｰｰwwww\n!tokumei *     botが代わりに発言してくれます\n!marry *        *に求婚します\n!rsp [r|s|p] じゃんけんです\n!debug           デバッグ用です\n!help              コマンドリストを表示します"
+    const m = "---<command list>---\n!dice              6面ダイスを振ります\n!npee             ﾝﾋﾟｰｰｰｰｰｰwwww\n!tokumei *     botが代わりに発言してくれます\n!marry *        *に求婚します\n!rsp [r|s|p] じゃんけんです\n!debug           デバッグ用です\n!help              コマンドリストを表示します\n!joke              るるたちゃんの鉄板ジョークを聞きたいか？"
     msg.channel.send(m);
+  }else if(str == "!joke"){
+    const fs = require('fs');
+    const jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
+    msg.channel.send(jsonObject[Math.floor(Math.random()*jsonObject.length)]);
+  }else if(str.substring(0,9) == "!addjoke "){
+    const fs = require('fs');
+    var jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
+    jsonObject.push(str.substring(9));
+    fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
   }
 });
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
