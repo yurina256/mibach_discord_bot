@@ -105,11 +105,11 @@ client.on('message', async msg => {
   }
   console.log(str);
 });
-require('node-cron').schedule('0 19 * * *', () => {
+require('node-cron').schedule('0 4 * * *', () => {
   console.log('おはよう！朝四時に何してるんだい？');
   client.channels.get('697817662918492262').send('おはよう！朝四時に何してるんだい？')
 });
-require('node-cron').schedule('0 23 * * *', () => {
+require('node-cron').schedule('52 22 * * *', () => {
   console.log('bot発言テスト');
   client.channels.get('697817662918492262').send('自動送信メッセージのテスト');
 });
