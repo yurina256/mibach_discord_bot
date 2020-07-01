@@ -11,76 +11,55 @@ client.on('message', async msg => {
     const file = msg.attachments.first();
     var data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
     var jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
-  if(str === '!npee') {
+    str = str.split(" ");
+    var command = str[0];
+  if(command === '!npee') {
     msg.channel.send('ﾝﾋﾟｰｰｰｰｰｰwwww');
-  }else if(msg.content === '!oreka'){
+  }else if(command === '!oreka'){
     msg.channel.send('おれかぁ？');
-  }else if(str.substring(0,7) === '!marry '&&str.length>=8){
-    msg.channel.send(str.substring(7)+'、結婚してくれ、俺が幸せにする');
-  }else if(str === '!dice'){
+  }else if(command === '!marry'&&str.length>=8){
+    msg.channel.send(str[1]+'、結婚してくれ、俺が幸せにする');
+  }else if(command === '!dice'){
     msg.channel.send('🎲dice => '+(Math.floor(Math.random()*6)+1));
-  }else if(str.substring(0,5) === '!rsp '&&str.substring(5).match(rsp)){
-    str = str.substring(5);
-    var ans = janken(str);
-    var p = ans[1];
-    ans[1] = str;
-    var n = [];
-    ans.forEach(function(val){
-      switch(val){
-        case "r":
-          n.push("グー");
-        break;
-        case "s":
-          n.push("チョキ");
-        break;
-        case "p":
-          n.push("パー");
-        break;
-      }
-    });
-    msg.channel.send('botの手:'+n[0]+" あなたの手:"+n[1]+" 結果:"+p);
-  }else if(str.substring(0,6) === '!debug') {
+  }else if(command === '!setting') {
     if (!kengen){
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません。');
     }else{
-      if(str.substring(7,15) === "jsonadd "){
-        jsonObject.push(str.substring(15));
-        fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
-      }else if(str.substring(7) === "kill_flag"){
+      if(str.substring(7) === "kill_flag"){
         msg.channel.send(data.kill);
       }
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
-  }else if(str.substring(0,9) === "!tokumei "){
-    var txt = str.substring(9);
+  }else if(command === "!tokumei"){
+    var txt = str[1];
     msg.delete();
     msg.channel.send(txt);
-  }else if(str == "!help"){
+  }else if(command == "!help"){
     const m = "---<command list>---\n!dice              6面ダイスを振ります\n!npee             ﾝﾋﾟｰｰｰｰｰｰwwww\n!tokumei *     botが代わりに発言してくれます\n!marry *        *に求婚します\n!rsp [r|s|p]  じゃんけんです\n!debug           デバッグ用です\n!help              コマンドリストを表示します\n!joke              るるたちゃんの鉄板ジョークを聞きたいか？\n!addjoke          るるたちゃんの鉄板ジョークを追加！(要権限)\n!icon              Botのアイコンを変更します(画像を添付してください)\n!name *            Botの名前を変更します"
     msg.channel.send(m);
-  }else if(str == "!joke"){
+  }else if(command == "!joke"){
     msg.channel.send(jsonObject[Math.floor(Math.random()*jsonObject.length)]);
-  }else if(str.substring(0,9) == "!addjoke "){
+  }else if(command == "!addjoke"){
     if(kengen){
-    jsonObject.push(str.substring(9));
+    jsonObject.push(str[1]);
     fs.writeFileSync('./joke.json', JSON.stringify(jsonObject));
     msg.channel.send('✅こうしてこの地球上に新たなダジャレが生まれたのだった…');
     }else{
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません。');
     }
-  }else if(str == "!激ヤバ腹筋崩壊最強面白ギャグ"){
+  }else if(command == "!激ヤバ腹筋崩壊最強面白ギャグ"){
     msg.channel.send("undefind");
-  }else if(str == "さて"&&data.kill){
+  }else if(command == "さて"&&data.kill){
     msg.channel.send("さてじゃないんだよ");
     //msg.member.send('Try again:https://discord.gg/ZF6vAdN')
     msg.member.kick();
-  }else if(str == '<:emoji_38:705716399104065556>'&&data.kill){
+  }else if(command == '<:emoji_38:705716399104065556>'&&data.kill){
     msg.channel.send("殺してやるよ");
     msg.channel.send(msg.member.user.tag+"は無残な姿で発見されました。");
     msg.member.kick();
     //msg.member.send('Try again:https://discord.gg/ZF6vAdN')
     //なぜか動かない　メッセージ送信が許可されてないだけだと思う
-  }else if(str == "!kill_off"){
+  }else if(command == "!kill_off"){
     if(!kengen){
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません。');
     }else{
@@ -96,75 +75,13 @@ client.on('message', async msg => {
       fs.writeFileSync('./data.json', JSON.stringify(data));
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
-  }else if(str == "!icon"){
+  }else if(command == "!icon"){
     if (!file) return // 添付ファイルがなかったらスルー
     if (!file.height && !file.width) return // 画像じゃなかったらスルー
     client.user.setAvatar(file.url)
-  }else if(str.substring(0,6) === "!name "){
-    msg.guild.members.get(client.user.id).setNickname(str.substring(6));
+  }else if(command === "!name"){
+    msg.guild.members.get(client.user.id).setNickname(str[1]);
   }
   console.log(str);
 });
-require('node-cron').schedule('0 4 * * *', () => {
-  console.log('おはよう！朝四時に何してるんだい？');
-  client.channels.get('697817662918492262').send('おはよう！朝四時に何してるんだい？')
-});
-require('node-cron').schedule('52 22 * * *', () => {
-  console.log('bot発言テスト');
-  client.channels.get('697817662918492262').send('自動送信メッセージのテスト');
-});
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
-function janken(str){
-  var bot = Math.floor(Math.random()*3);
-  var ans = "";
-  switch(str){
-    case "r":
-      switch(bot){
-        case 0:
-          ans = "WIN";
-          break;
-        case 1:
-          ans = "DRAW";
-          break;
-        case 2:
-          ans = "LOSE";
-      }
-      break;
-      case "s":
-        switch(bot){
-          case 0:
-            ans = "DRAW";
-            break;
-          case 1:
-            ans = "LOSE";
-            break;
-          case 2:
-            ans = "WIN";
-        }
-        break;
-        case "p":
-          switch(bot){
-            case 0:
-              ans = "LOSE";
-              break;
-            case 1:
-              ans = "WIN";
-              break;
-            case 2:
-              ans = "DRAW";
-          }
-          break;
-  }
-  switch(bot){
-    case 0:
-      bot = "s";
-    break;
-    case 1:
-      bot = "r";
-    break;
-    case 2:
-      bot = "p";
-      break;
-  }
-  return [bot,ans]
-}
