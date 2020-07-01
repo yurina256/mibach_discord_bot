@@ -85,7 +85,7 @@ client.on('message', async msg => {
     const n = data.stpr.length;
     var tx = "!p"
     if(str[1]=="now") tx = "!ps";
-    console.log(tx+" "+data.stpr[Math.floor(Math.random()*n)]);
+    client.channels.get('727482062315061268').send(tx+" "+data.stpr[Math.floor(Math.random()*n)]);
   }else if(command == "!addstpr"){
     if(str[1] == "q"){
       msg.channel.send(data.stpr.join("\n"))
