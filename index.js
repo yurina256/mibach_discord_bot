@@ -81,6 +81,20 @@ client.on('message', async msg => {
     client.user.setAvatar(file.url)
   }else if(command === "!name"){
     msg.guild.members.get(client.user.id).setNickname(str[1]);
+  }else if(command == "!stpr"){
+    const n = data.stpr.length;
+    var tx = "!p"
+    if(str[1]=="now") tx = "!ps";
+    console.log(tx+" "+data.stpr[Math.floor(Math.random()*n)]);
+  }else if(command == "!addstpr"){
+    if(str[1] == "q"){
+      msg.channel.send(data.stpr.join("\n"))
+    }else{
+      data.stpr.push(str[1]);
+      fs.writeFileSync('./data.json', JSON.stringify(data));
+    }
+  }else if(command == "!expo"){
+    client.users.get(435303011372498944).send(data.stpr.join("\n"));
   }
   console.log(str);
 });

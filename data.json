@@ -1,1 +1,4 @@
-{"kill":true,"yukidama":"26 8 * * *"}
+{
+  "kill": true,
+  "stpr": [ "https://youtu.be/AGNcXyIjXOI", "https://youtu.be/NAv0TcF1Gz4" ]
+}
