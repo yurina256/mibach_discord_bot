@@ -94,7 +94,7 @@ client.on('message', async msg => {
       fs.writeFileSync('./data.json', JSON.stringify(data));
     }
   }else if(command == "!expo"){
-    client.channels.cache.get('727866447895855176').send(data.stpr.join("\n"))
+    client.channels.get('727866447895855176').send(data.stpr.join("\n"))
   }
   console.log(str);
 });
