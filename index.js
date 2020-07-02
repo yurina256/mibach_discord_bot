@@ -21,7 +21,7 @@ client.on('message', async msg => {
   }else if(command === '!dice'){
     var num = 6;
     if(str[1]){
-      if(!isNaN(Number(str[1]))&&str[1]) num = Number(str[1]);
+      if(!isNaN(Number(str[1]))&&str[1]&&str[1]!=0) num = Number(str[1]);
     }
     msg.channel.send('🎲dice => '+(dice(num)));
   }else if(command === '!setting') {
@@ -110,4 +110,4 @@ function dice(N){
   var p = random.next();
   return (Math.abs(p)%N)+1;
 }
-client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
+client.login(process.env.BOT_TOKEN);
