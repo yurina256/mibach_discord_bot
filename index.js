@@ -7,7 +7,6 @@ client.on('message', async msg => {
     const fs = require('fs');
     var kengen = msg.member.roles.has('707408548019306556');
     var str =  msg.content;
-    const rsp = /^[rsp]$/g;
     const file = msg.attachments.first();
     var data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
     var jsonObject = JSON.parse(fs.readFileSync('./joke.json', 'utf8'));
@@ -20,7 +19,11 @@ client.on('message', async msg => {
   }else if(command === '!marry'&&str.length>=8){
     msg.channel.send(str[1]+'、結婚してくれ、俺が幸せにする');
   }else if(command === '!dice'){
-    msg.channel.send('🎲dice => '+(Math.floor(Math.random()*6)+1));
+    var num = 6;
+    if(str[1]){
+      if(!isNaN(Number(str[1]))) num = Number(str[1]);
+    }
+    msg.channel.send('🎲dice => '+(dice(num)));
   }else if(command === '!setting') {
     if (!kengen){
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません。');
@@ -35,7 +38,7 @@ client.on('message', async msg => {
     msg.delete();
     msg.channel.send(txt);
   }else if(command == "!help"){
-    const m = "---<command list>---\n!dice              6面ダイスを振ります\n!npee             ﾝﾋﾟｰｰｰｰｰｰwwww\n!tokumei *     botが代わりに発言してくれます\n!marry *        *に求婚します\n!rsp [r|s|p]  じゃんけんです\n!debug           デバッグ用です\n!help              コマンドリストを表示します\n!joke              るるたちゃんの鉄板ジョークを聞きたいか？\n!addjoke          るるたちゃんの鉄板ジョークを追加！(要権限)\n!icon              Botのアイコンを変更します(画像を添付してください)\n!name *            Botの名前を変更します"
+    const m = "---<command list>---\n!dice              6面ダイスを振ります\n!npee             ﾝﾋﾟｰｰｰｰｰｰwwww\n!tokumei *     botが代わりに発言してくれます\n!marry *        *に求婚します\n!debug           デバッグ用です\n!help              コマンドリストを表示します\n!joke              るるたちゃんの鉄板ジョークを聞きたいか？\n!addjoke          るるたちゃんの鉄板ジョークを追加！(要権限)\n!icon              Botのアイコンを変更します(画像を添付してください)\n!name *            Botの名前を変更します"
     msg.channel.send(m);
   }else if(command == "!joke"){
     msg.channel.send(jsonObject[Math.floor(Math.random()*jsonObject.length)]);
@@ -98,4 +101,27 @@ client.on('message', async msg => {
   }
   console.log(str);
 });
+class Random {
+  constructor(seed = 88675123) {
+    this.x = Date.now();
+    this.y = 362436069;
+    this.z = 521288629;
+    this.w = seed;
+  }
+  
+  // XorShift
+  next() {
+    let t;
+ 
+    t = this.x ^ (this.x << 11);
+    this.x = this.y; this.y = this.z; this.z = this.w;
+    return this.w = (this.w ^ (this.w >>> 19)) ^ (t ^ (t >>> 8)); 
+  }
+}
+function dice(N){
+  const seed = 114514;
+  const random = new Random(seed);
+  var p = Random.next();
+  return (Math.abs(p)%N)+1;
+}
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
