@@ -121,7 +121,7 @@ class Random {
 function dice(N){
   const seed = 114514;
   const random = new Random(seed);
-  var p = Random.next();
+  var p = random.next();
   return (Math.abs(p)%N)+1;
 }
 client.login('NzA3Mjg5MzIwMzA1NzIxMzU0.XrJCww.ICXpIwz2rMfOqBIixMtM7X0Ik3E');
