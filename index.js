@@ -21,14 +21,14 @@ client.on('message', async msg => {
   }else if(command === '!dice'){
     var num = 6;
     if(str[1]){
-      if(!isNaN(Number(str[1]))) num = Number(str[1]);
+      if(!isNaN(Number(str[1]))&&str[1]) num = Number(str[1]);
     }
     msg.channel.send('🎲dice => '+(dice(num)));
   }else if(command === '!setting') {
     if (!kengen){
       msg.channel.send('⚠コマンドの実行に失敗しました。権限がありません。');
     }else{
-      if(str.substring(7) === "kill_flag"){
+      if(str[1] === "kill_flag"){
         msg.channel.send(data.kill);
       }
       msg.channel.send('✅コマンドの実行に成功しました。');
@@ -84,20 +84,6 @@ client.on('message', async msg => {
     client.user.setAvatar(file.url)
   }else if(command === "!name"){
     msg.guild.members.get(client.user.id).setNickname(str[1]);
-  }else if(command == "!stpr"){
-    const n = data.stpr.length;
-    var tx = "!p"
-    if(str[1]=="now") tx = "!ps";
-    client.channels.get('727482062315061268').send(tx+" "+data.stpr[Math.floor(Math.random()*n)]);
-  }else if(command == "!addstpr"){
-    if(str[1] == "q"){
-      msg.channel.send(data.stpr.join("\n"))
-    }else{
-      data.stpr.push(str[1]);
-      fs.writeFileSync('./data.json', JSON.stringify(data));
-    }
-  }else if(command == "!expo"){
-    client.channels.get('727866447895855176').send(data.stpr.join("\n"))
   }
   console.log(str);
 });
