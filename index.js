@@ -5,7 +5,7 @@ client.on('ready', () => {
 })
 client.on('message', async msg => {
     const fs = require('fs');
-    var kengen = msg.member.roles.has('707408548019306556');
+    const kengen = msg.member.roles.has('707408548019306556');
     var str =  msg.content;
     const file = msg.attachments.first();
     var data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
@@ -84,6 +84,14 @@ client.on('message', async msg => {
     client.user.setAvatar(file.url)
   }else if(command === "!name"){
     msg.guild.members.get(client.user.id).setNickname(str[1]);
+  }else if(command.match(/!\dd\d{1,4}/)){
+    command = command.split("!").join("").split("d").map(Number);
+    var ans = "";
+    for(var i=0;i<command[0];i++){
+      ans += String(dice(command[1]));
+      ans += " ";
+    }
+    msg.channel.send(ans.join());
   }
   console.log(str);
 });
