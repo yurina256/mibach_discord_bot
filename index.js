@@ -1,5 +1,7 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const seed = 45864542;
+const random = new Random(seed);
 client.on('ready', () => {
   console.log(`${client.user.username} でログインしています。`)
 })
@@ -112,8 +114,6 @@ class Random {
   }
 }
 function dice(N){
-  const seed = 114514;
-  const random = new Random(seed);
   var p = random.next();
   return (Math.abs(p)%N)+1;
 }
