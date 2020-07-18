@@ -1,5 +1,22 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+class Random {
+  constructor(seed = 88675123) {
+    this.x = Date.now();
+    this.y = 362436069;
+    this.z = 521288629;
+    this.w = seed;
+  }
+  
+  // XorShift
+  next() {
+    let t;
+ 
+    t = this.x ^ (this.x << 11);
+    this.x = this.y; this.y = this.z; this.z = this.w;
+    return this.w = (this.w ^ (this.w >>> 19)) ^ (t ^ (t >>> 8)); 
+  }
+}
 const seed = 45864542;
 const random = new Random(seed);
 client.on('ready', () => {
@@ -96,23 +113,6 @@ client.on('message', async msg => {
   }
   console.log(str);
 });
-class Random {
-  constructor(seed = 88675123) {
-    this.x = Date.now();
-    this.y = 362436069;
-    this.z = 521288629;
-    this.w = seed;
-  }
-  
-  // XorShift
-  next() {
-    let t;
- 
-    t = this.x ^ (this.x << 11);
-    this.x = this.y; this.y = this.z; this.z = this.w;
-    return this.w = (this.w ^ (this.w >>> 19)) ^ (t ^ (t >>> 8)); 
-  }
-}
 function dice(N){
   var p = random.next();
   return (Math.abs(p)%N)+1;
