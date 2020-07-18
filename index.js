@@ -86,10 +86,9 @@ client.on('message', async msg => {
     msg.guild.members.get(client.user.id).setNickname(str[1]);
   }else if(command.match(/!\dd\d{1,4}/)){
     command = command.split("!").join("").split("d").map(Number);
-    var ans = "";
+    var ans = [];
     for(var i=0;i<command[0];i++){
-      ans += String(dice(command[1]));
-      ans += " ";
+      ans.push(String(dice(command[1])));
     }
     msg.channel.send(ans.join());
   }
