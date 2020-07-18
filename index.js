@@ -37,7 +37,7 @@ client.on('message', async msg => {
     msg.channel.send('おれかぁ？');
   }else if(command === '!marry'&&str.length>=8){
     msg.channel.send(str[1]+'、結婚してくれ、俺が幸せにする');
-  }else if(command === '!dice'){
+  }else if(command === '!dice'||command === '!d'){
     var num = 6;
     if(str[1]){
       if(!isNaN(Number(str[1]))&&str[1]&&str[1]!=0) num = Number(str[1]);
