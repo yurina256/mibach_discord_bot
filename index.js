@@ -120,13 +120,20 @@ client.on('message', async msg => {
     msg.channel.send(ans.join());
   }else if(command == "!time"){
     var params = {screen_name: '0x10a9fc70042'};
+    if(str[1]){params.screen_name = str[1]}
     Twclient.get('statuses/user_timeline', params, function(error, tweets, response) {
-      console.log('TwitterKEY_A','TwitterKEY_B','TwitterKEY_C','TwitterKEY_D')
+     // console.log('TwitterKEY_A','TwitterKEY_B','TwitterKEY_C','TwitterKEY_D')
       if (!error) {
             console.log(tweets[0].id_str)
-            console.log('TwitterKEY_A','TwitterKEY_B','TwitterKEY_C','TwitterKEY_D')
+            var n = tweets[0].id_str;
+            n = n>>22;
+            n += 1288834974657
+            //console.log('TwitterKEY_A','TwitterKEY_B','TwitterKEY_C','TwitterKEY_D')
+            msg.channel.send(n.strftime("%H:%M:%S.%L"));
       }else{
           console.log("twtt error!!");
+          msg.channel.send("not found");
+
       }
     });
   }
