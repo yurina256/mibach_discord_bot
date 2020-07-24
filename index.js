@@ -123,6 +123,7 @@ client.on('message', async msg => {
     Twclient.get('statuses/user_timeline', params, function(error, tweets, response) {
       if (!error) {
             console.log(tweets[0].id_str)
+            console.log('TwitterKEY_A','TwitterKEY_B','TwitterKEY_C','TwitterKEY_D')
       }else{
           console.log("twtt error!!");
       }
