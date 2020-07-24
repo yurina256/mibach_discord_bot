@@ -22,10 +22,10 @@ const random = new Random(seed);
 const twitter = require("twitter");
 const fs = require("fs");
 const Twclient = new twitter({
-  consumer_key:        'TwitterKEY_A',
-  consumer_secret:     'TwitterKEY_B',
-  access_token_key:    'TwitterKEY_C',
-  access_token_secret: 'TwitterKEY_D',
+  consumer_key:        process.env.TwitterKEY_A,
+  consumer_secret:     process.env.TwitterKEY_B,
+  access_token_key:    process.env.TwitterKEY_C,
+  access_token_secret: process.env.TwitterKEY_D,
 });
 client.on('ready', () => {
   console.log(`${client.user.username} でログインしています。`)
