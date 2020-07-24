@@ -119,6 +119,7 @@ client.on('message', async msg => {
     }
     msg.channel.send(ans.join());
   }else if(command == "!time"){
+    var params = {screen_name: '0x10a9fc70042'};
     Twclient.get('statuses/user_timeline', params, function(error, tweets, response) {
       if (!error) {
             console.log(tweets[0].id_str)
