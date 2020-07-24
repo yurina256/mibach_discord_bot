@@ -128,8 +128,8 @@ client.on('message', async msg => {
             var n = tweets[0].id_str;
             n = n>>22;
             n += 1288834974657
-            //console.log('TwitterKEY_A','TwitterKEY_B','TwitterKEY_C','TwitterKEY_D')
-            msg.channel.send(n.strftime("%H:%M:%S.%L"));
+            var ans = new Date(n)
+            msg.channel.send(ans.getHours()+":"+ans.getMinutes()+":"+ans.getSeconds()+"."+ans.getMilliseconds());
       }else{
           console.log("twtt error!!");
           msg.channel.send("not found");
