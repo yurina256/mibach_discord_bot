@@ -19,6 +19,14 @@ class Random {
 }
 const seed = 45864542;
 const random = new Random(seed);
+const twitter = require("twitter");
+const fs = require("fs");
+const Twclient = new twitter({
+  consumer_key:        'TwitterKEY_A',
+  consumer_secret:     'TwitterKEY_B',
+  access_token_key:    'TwitterKEY_C',
+  access_token_secret: 'TwitterKEY_D',
+});
 client.on('ready', () => {
   console.log(`${client.user.username} でログインしています。`)
 })
@@ -110,6 +118,14 @@ client.on('message', async msg => {
       ans.push(String(dice(command[1])));
     }
     msg.channel.send(ans.join());
+  }else if(command == "!time"){
+    Twclient.get('statuses/user_timeline', params, function(error, tweets, response) {
+      if (!error) {
+            console.log(tweets[0].id_str)
+      }else{
+          console.log("twtt error!!");
+      }
+    });
   }
   console.log(str);
 });
