@@ -130,7 +130,7 @@ client.on('message', async msg => {
             n +=  1288834974657n;
             var ans = new Date(n)
             console.log(ans)
-            msg.channel.send(ans.getHours()+":"+(ans.getMinutes()>=10?"":"0")+ans.getMinutes()+":"+(ans.getMinutes()>=10?"":"0")ans.getSeconds()+"."+ans.getMilliseconds());
+            msg.channel.send(ans.getHours()+":"+(ans.getMinutes()>=10?"":"0")+ans.getMinutes()+":"+(ans.getMinutes()>=10?"":"0")+ans.getSeconds()+"."+ans.getMilliseconds());
       }else{
           console.log("twtt error!!");
           msg.channel.send("not found");
