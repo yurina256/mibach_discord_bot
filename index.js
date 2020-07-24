@@ -128,7 +128,7 @@ client.on('message', async msg => {
             var n = BigInt(tweets[0].id_str);
             n = n>>22n;
             n +=  1288834974657n;
-            var ans = new Date(n)
+            var ans = new Date(Number(n))
             console.log(ans)
             msg.channel.send(ans.getHours()+":"+(ans.getMinutes()>=10?"":"0")+ans.getMinutes()+":"+(ans.getMinutes()>=10?"":"0")+ans.getSeconds()+"."+ans.getMilliseconds());
       }else{
