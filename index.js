@@ -160,7 +160,7 @@ client.on('message', async msg => {
         break;
       }
     }
-  }else if("!dm_t"){
+  }else if(command == "!dm_t"){
     msg.author.send("Message to Send");
   }
   console.log(str);
