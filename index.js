@@ -165,6 +165,7 @@ client.on('message', async msg => {
     msg.author.send("Message to Send");
   }else if(command == "!fukubiki_add"&&str[1].length!=0){
     fukubiki.push([msg.member.user.tag,str[1]]);
+    msg.author.send("追加されました:"+fukubiki[fukubiki.length-1][0]);
   }else if(command == "!fukubiki_get"){
     if(fukubiki.length == 0){
       msg.author.send("中身がカラッポですぞ");
