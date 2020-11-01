@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+var fukubiki = [];
 class Random {
   constructor(seed = 88675123) {
     this.x = Date.now();
@@ -162,6 +163,17 @@ client.on('message', async msg => {
     }
   }else if(command == "!dm_t"){
     msg.author.send("Message to Send");
+  }else if(command == "!fukubiki_add"&&str[1].length!=0){
+    fukubiki.push([msg.member.user.tag,str[1]]);
+  }else if(command == "!fukubiki_get"){
+    if(fukubiki.length == 0){
+      msg.author.send("中身がカラッポですぞ");
+    }else{
+      var point = Math.floor(Math.random()*fukubiki.length); 
+      msg.author.send(fukubiki[point][1]);
+      msg.author.send("送信者："+fukubiki[point][0]);
+      fukubiki.splice(point,1);
+    }
   }
   console.log(str);
 });
