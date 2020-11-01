@@ -164,7 +164,7 @@ client.on('message', async msg => {
   }else if(command == "!dm_t"){
     msg.author.send("Message to Send");
   }else if(command == "!fukubiki_add"&&str[1].length!=0){
-    fukubiki.push([msg.member.user.tag,str[1]]);
+    fukubiki.push([msg.author.user.tag,str[1]]);
     msg.author.send("追加されました:"+fukubiki[fukubiki.length-1][0]);
   }else if(command == "!fukubiki_get"){
     if(fukubiki.length == 0){
