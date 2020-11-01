@@ -32,7 +32,7 @@ client.on('ready', () => {
 })
 client.on('message', async msg => {
     const fs = require('fs');
-    const kengen = msg.member.roles.has('707408548019306556');
+    const kengen = true;
     var str =  msg.content;
     const file = msg.attachments.first();
     var data = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
@@ -161,7 +161,7 @@ client.on('message', async msg => {
       }
     }
   }else if("!dm_t"){
-    msg.author.send("Message to Send");
+    msg.au.send("Message to Send");
   }
   console.log(str);
 });
