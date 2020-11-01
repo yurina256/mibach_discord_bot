@@ -161,7 +161,7 @@ client.on('message', async msg => {
       }
     }
   }else if("!dm_t"){
-    msg.au.send("Message to Send");
+    msg.author.send("Message to Send");
   }
   console.log(str);
 });
