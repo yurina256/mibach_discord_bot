@@ -124,6 +124,7 @@ client.on('message', async msg => {
     Twclient.get('statuses/user_timeline', params, function(error, tweets, response) {
      // console.log('TwitterKEY_A','TwitterKEY_B','TwitterKEY_C','TwitterKEY_D')
       if (!error) {
+            //ID=>時刻換算処理
             console.log(tweets[0].id_str)
             var n = BigInt(tweets[0].id_str);
             n = n>>22n;
@@ -133,10 +134,34 @@ client.on('message', async msg => {
             msg.channel.send(ans.getHours()+":"+(ans.getMinutes()>=10?"":"0")+ans.getMinutes()+":"+(ans.getMinutes()>=10?"":"0")+ans.getSeconds()+"."+ans.getMilliseconds());
       }else{
           console.log("twtt error!!");
+          //IDが存在しなかったときも呼ばれる
           msg.channel.send("not found");
 
       }
     });
+  }else if(command == "!bf"){
+    var arr = new Array(65535).fill(0);
+    var pointer = 0;
+    var input = 0;
+    var ans = "";
+    for(var i=0;i<str[1].length;i++){
+      switch(str[i]){
+        case "<":
+        pointer--;
+        break;
+        case ">":
+        pointer++;
+        break;
+        case "+":
+        arr[pointer]++;
+        break;
+        case "-":
+        arr[pointer]--;
+        break;
+      }
+    }
+  }else if("!dm_t"){
+    msg.author.send("Message to Send");
   }
   console.log(str);
 });
