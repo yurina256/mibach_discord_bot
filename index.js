@@ -29,7 +29,8 @@ const Twclient = new twitter({
   access_token_secret: process.env.TwitterKEY_D,
 });
 client.on('ready', () => {
-  console.log(`${client.user.username} でログインしています。`)
+  console.log(`${client.user.username} でログインしています。`);
+  client.user.setActivity("最強雄筋肉ちんぽバトル",{type:"PLAYING"});
 })
 client.on('message', async msg => {
     const fs = require('fs');
