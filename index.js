@@ -197,8 +197,8 @@ client.on('message', async msg => {
     if(b[1]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*MANKO*");
     if(b[1]>=1 && b[4]>=1 && b[3]>=1 && b[5]>=1) msg.channel.send("*OMANKO*");
     if(b[2]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*CHINKO*");
-    if(b[2]>=2 && b[3]>=2) msg.channel.send("*MANKO*");
-    if(b[2]>=2 && b[3]>=2 && b[5]>=1) msg.channel.send("*MANKO*");
+    if(b[2]>=2 && b[3]>=2) msg.channel.send("*CHINCHIN*");
+    if(b[2]>=2 && b[3]>=2 && b[5]>=1) msg.channel.send("*OCHINCHIN*");
   }
   console.log(str);
 });
