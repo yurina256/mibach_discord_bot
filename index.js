@@ -45,7 +45,7 @@ client.on('message', async msg => {
     msg.channel.send('ﾝﾋﾟｰｰｰｰｰｰwwww');
   }else if(command === '!oreka'){
     msg.channel.send('おれかぁ？');
-  }else if(command === '!marry'&&str.length>=8){
+  }else if(command === '!marry'&&str.length<=8){
     msg.channel.send(str[1]+'、結婚してくれ、俺が幸せにする');
   }else if(command === '!dice'||command === '!d'){
     var num = 6;
