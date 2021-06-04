@@ -22,6 +22,7 @@ const seed = 45864542;
 const random = new Random(seed);
 const twitter = require("twitter");
 const fs = require("fs");
+const { report } = require('process');
 const Twclient = new twitter({
   consumer_key:        process.env.TwitterKEY_A,
   consumer_secret:     process.env.TwitterKEY_B,
@@ -176,6 +177,28 @@ client.on('message', async msg => {
       msg.author.send("送信者："+fukubiki[point][0]);
       fukubiki.splice(point,1);
     }
+  }else if(command == "!nko"){
+    const table = ["う","ま","ち","ん","こ","お"];
+    var tmp = [];
+    var k = [4,5,6][dice(3)-1];
+    for(var i=0;i<k;i++){
+      tmp.push(table[dice(6)-1]);
+    }
+    msg.channel.send("\`\`\`"+tmp.join(" ")+"\`\`\`");
+    var b = new Array(6).fill(0);
+    b[0] += tmp.filter(val => val == "う").length;
+    b[1] += tmp.filter(val => val == "ま").length;
+    b[2] += tmp.filter(val => val == "ち").length;
+    b[3] += tmp.filter(val => val == "ん").length;
+    b[4] += tmp.filter(val => val == "こ").length;
+    b[5] += tmp.filter(val => val == "お").length;
+    if(b[0]>=1 && b[2]>=1 && b[3]>=1) msg.channel.send("*UNCHI*");
+    if(b[0]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*UNKO*");
+    if(b[1]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*MANKO*");
+    if(b[1]>=1 && b[4]>=1 && b[3]>=1 && b[5]>=1) msg.channel.send("*OMANKO*");
+    if(b[2]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*CHINKO*");
+    if(b[2]>=2 && b[3]>=2) msg.channel.send("*MANKO*");
+    if(b[2]>=2 && b[3]>=2 && b[5]>=1) msg.channel.send("*MANKO*");
   }
   console.log(str);
 });
