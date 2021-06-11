@@ -64,7 +64,6 @@ client.on('message', async msg => {
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
   }else if(command === "!tokumei"){
-    if(msg.channel.id=="741328643111911595") break;
     var txt = str[1];
     msg.delete();
     msg.channel.send(txt);
