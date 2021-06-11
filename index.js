@@ -64,6 +64,7 @@ client.on('message', async msg => {
       msg.channel.send('✅コマンドの実行に成功しました。');
     }
   }else if(command === "!tokumei"){
+    if(msg.channel.id=="741328643111911595") break;
     var txt = str[1];
     msg.delete();
     msg.channel.send(txt);
@@ -180,7 +181,7 @@ client.on('message', async msg => {
   }else if(command == "!nko"){
     const table = ["う","ま","ち","ん","こ","お"];
     var tmp = [];
-    var k = [4,5,6][dice(3)-1];
+    var k = [4,5,6,7][dice(4)-1];
     for(var i=0;i<k;i++){
       tmp.push(table[dice(6)-1]);
     }
@@ -192,13 +193,13 @@ client.on('message', async msg => {
     b[3] += tmp.filter(val => val == "ん").length;
     b[4] += tmp.filter(val => val == "こ").length;
     b[5] += tmp.filter(val => val == "お").length;
-    if(b[0]>=1 && b[2]>=1 && b[3]>=1) msg.channel.send("*UNCHI*");
-    if(b[0]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*UNKO*");
-    if(b[1]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*MANKO*");
-    if(b[1]>=1 && b[4]>=1 && b[3]>=1 && b[5]>=1) msg.channel.send("*OMANKO*");
-    if(b[2]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*CHINKO*");
-    if(b[2]>=2 && b[3]>=2) msg.channel.send("*CHINCHIN*");
-    if(b[2]>=2 && b[3]>=2 && b[5]>=1) msg.channel.send("*OCHINCHIN*");
+    if(b[0]>=1 && b[2]>=1 && b[3]>=1) msg.channel.send("*UNCHI*"),f=true;
+    if(b[0]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*UNKO*"),f=true;
+    if(b[1]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*MANKO*"),f=true;
+    if(b[1]>=1 && b[4]>=1 && b[3]>=1 && b[5]>=1) msg.channel.send("*OMANKO*"),f=true;
+    if(b[2]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*CHINKO*"),f=true;
+    if(b[2]>=2 && b[3]>=2) msg.channel.send("*CHINCHIN*"),f=true;
+    if(b[2]>=2 && b[3]>=2 && b[5]>=1) msg.channel.send("*OCHINCHIN*"),f=true;
   }
   console.log(str);
 });
