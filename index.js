@@ -199,6 +199,11 @@ client.on('message', async msg => {
     if(b[2]>=1 && b[4]>=1 && b[3]>=1) msg.channel.send("*CHINKO*"),f=true;
     if(b[2]>=2 && b[3]>=2) msg.channel.send("*CHINCHIN*"),f=true;
     if(b[2]>=2 && b[3]>=2 && b[5]>=1) msg.channel.send("*OCHINCHIN*"),f=true;
+  }else if(command == "!nko​"){//不正おちんちん zerowidth space
+    tmp = ["お","ち","ん","ち","ん"];
+    msg.channel.send("\`\`\`"+tmp.join(" ")+"\`\`\`");
+    msg.channel.send("*CHINCHIN*"),f=true;
+    msg.channel.send("*OCHINCHIN*"),f=true;
   }
   console.log(str);
 });
