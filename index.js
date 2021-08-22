@@ -125,7 +125,7 @@ client.on('message', async msg => {
     }
     if(isNaN(sum)) return;
     else if(ans.length==1) msg.channel.send('🎲dice => '+ans[0]);
-    else msg.channel.send('🎲dice => '+ans.join('+')+" => "+tmp);
+    else msg.channel.send('🎲dice => '+ans.join('+')+" => "+sum);
   }else if(command == "!time"){
     var params = {screen_name: '0x10a9fc70042'};
     if(str[1]){params.screen_name = str[1]}
