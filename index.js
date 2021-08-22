@@ -114,13 +114,18 @@ client.on('message', async msg => {
     client.user.setAvatar(file.url)
   }else if(command === "!name"){
     msg.guild.members.get(client.user.id).setNickname(str[1]);
-  }else if(command.match(/!\dd\d{1,4}/)){
+  }else if(command.match(/^!\dd\d{1,4}$/)){//ndn表記
     command = command.split("!").join("").split("d").map(Number);
     var ans = [];
+    var sum = 0;
     for(var i=0;i<command[0];i++){
-      ans.push(String(dice(command[1])));
+      var tmp = dice(command[1]);
+      ans.push(String(tmp));
+      sum += tmp;
     }
-    msg.channel.send(ans.join());
+    if(isNaN(sum)) return;
+    else if(ans.length==1) msg.channel.send('🎲dice => '+ans[0]);
+    else msg.channel.send(ans.join('+')+"="+tmp);
   }else if(command == "!time"){
     var params = {screen_name: '0x10a9fc70042'};
     if(str[1]){params.screen_name = str[1]}
