@@ -111,9 +111,9 @@ client.on('message', async msg => {
   }else if(command == "!icon"){
     if (!file) return // 添付ファイルがなかったらスルー
     if (!file.height && !file.width) return // 画像じゃなかったらスルー
-    client.user.setAvatar(file.url)
+    client.user.setAvatar(file.url())
   }else if(command === "!name"){
-    msg.guild.members.get(client.user.id).setNickname(str[1]);
+    msg.guild.members.cache.get(client.user.id).setNickname(str[1]);
   }else if(command.match(/^!\dd\d{1,4}$/)){//ndn表記
     command = command.split("!").join("").split("d").map(Number);
     var ans = [];
@@ -129,7 +129,7 @@ client.on('message', async msg => {
   }else if(command == "!time"){
     var params = {screen_name: '0x10a9fc70042'};
     if(str[1]){params.screen_name = str[1]}
-    Twclient.get('statuses/user_timeline', params, function(error, tweets, response) {
+    Twclient.cache.get('statuses/user_timeline', params, function(error, tweets, response) {
      // console.log('TwitterKEY_A','TwitterKEY_B','TwitterKEY_C','TwitterKEY_D')
       if (!error) {
             //ID=>時刻換算処理
@@ -139,7 +139,7 @@ client.on('message', async msg => {
             n +=  1288834974657n;
             var ans = new Date(Number(n))
             console.log(ans)
-            msg.channel.send(ans.getHours()+":"+(ans.getMinutes()>=10?"":"0")+ans.getMinutes()+":"+(ans.getMinutes()>=10?"":"0")+ans.getSeconds()+"."+ans.getMilliseconds());
+            msg.channel.send(ans.cache.getHours()+":"+(ans.cache.getMinutes()>=10?"":"0")+ans.cache.getMinutes()+":"+(ans.cache.getMinutes()>=10?"":"0")+ans.cache.getSeconds()+"."+ans.cache.getMilliseconds());
       }else{
           console.log("twtt error!!");
           //IDが存在しなかったときも呼ばれる
@@ -212,7 +212,7 @@ client.on('message', async msg => {
   }else if(command == "!debug"){
 
     var server = msg.guild;
-    msg.channel.send(server.members.cache.get('693825296075325470').displayName);
+    msg.channel.send(server.members.cache.cache.get('693825296075325470').displayName);
   }
   console.log(str);
 });
