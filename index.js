@@ -212,7 +212,7 @@ client.on('message', async msg => {
   }else if(command == "!debug"){
 
     var server = msg.guild;
-    msg.channel.send(server.members.cache.get('693825296075325470').displayName);
+    console.log(server.members.memberCount);
   }
   console.log(str);
 });
