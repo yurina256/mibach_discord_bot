@@ -214,7 +214,7 @@ client.on('message', async msg => {
     var server = msg.guild;
     server.fetch();
     console.log(server.memberCount);
-    console.log(await server.members.cache.get('693825296075325470'));
+    console.log(await server.members.get('693825296075325470'));
   }
   console.log(str);
 });
