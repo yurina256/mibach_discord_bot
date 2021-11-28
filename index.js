@@ -212,6 +212,7 @@ client.on('message', async msg => {
   }else if(command == "!debug"){
 
     var server = msg.guild;
+    server.fetch();
     console.log(server.members["693825296075325470"]);
   }
   console.log(str);
