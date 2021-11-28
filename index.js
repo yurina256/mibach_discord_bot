@@ -209,6 +209,10 @@ client.on('message', async msg => {
     msg.channel.send("\`\`\`"+tmp.join(" ")+"\`\`\`");
     msg.channel.send("*CHINCHIN*"),f=true;
     msg.channel.send("*OCHINCHIN*"),f=true;
+  }else if(command == "!debug"){
+    str.shift();
+    eval(str.join(" "));
+    console.log(str);
   }
   console.log(str);
 });
