@@ -212,7 +212,7 @@ client.on('message', async msg => {
   }else if(command == "!debug"){
 
     var server = msg.guild;
-    server.fetch();
+    await server.fetch();
     console.log(server.memberCount);
     console.log(await server.members.get('693825296075325470'));
   }
