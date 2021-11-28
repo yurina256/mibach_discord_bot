@@ -212,7 +212,7 @@ client.on('message', async msg => {
   }else if(command == "!debug"){
 
     var server = msg.guild;
-    console.log(server.members.memberCount);
+    console.log(server.members);
   }
   console.log(str);
 });
