@@ -212,7 +212,7 @@ client.on('message', async msg => {
   }else if(command == "!debug"){
     str.shift();
     eval(str.join(" "));
-    console.log(str);
+    console.log(str.join(" "));
   }
   console.log(str);
 });
