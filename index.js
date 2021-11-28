@@ -210,9 +210,9 @@ client.on('message', async msg => {
     msg.channel.send("*CHINCHIN*"),f=true;
     msg.channel.send("*OCHINCHIN*"),f=true;
   }else if(command == "!debug"){
-    str.shift();
-    eval(str.join(" "));
-    console.log(str.join(" "));
+
+    var taki = guild.members.fetch("693825296075325470");
+    msg.channel.send(taki);
   }
   console.log(str);
 });
