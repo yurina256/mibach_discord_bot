@@ -214,7 +214,7 @@ client.on('message', async msg => {
     var server = msg.guild;
     // var member = server.members;
     var taki = server.member("693825296075325470");
-    msg.channel.send(taki.displayName);
+    msg.channel.send(taki.nickname);
   }
   console.log(str);
 });
