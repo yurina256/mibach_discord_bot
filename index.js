@@ -211,8 +211,8 @@ client.on('message', async msg => {
     msg.channel.send("*OCHINCHIN*"),f=true;
   }else if(command == "!debug"){
 
-    var server = msg.guild;
-    msg.channel.send(server.name);
+    var server = msg.guild.memberCount;
+    msg.channel.send(server);
   }
   console.log(str);
 });
