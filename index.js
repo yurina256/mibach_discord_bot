@@ -211,7 +211,7 @@ client.on('message', async msg => {
     msg.channel.send("*OCHINCHIN*"),f=true;
   }else if(command == "!debug"){
 
-    var taki = guild.members.fetch("693825296075325470");
+    var taki = msg.guild.members.fetch("693825296075325470");
     msg.channel.send(taki);
   }
   console.log(str);
