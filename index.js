@@ -213,7 +213,7 @@ client.on('message', async msg => {
 
     var server = msg.guild;
     server.fetch();
-    console.log(server.members.cache.get("693825296075325470"));
+    console.log(server.members.resolve("693825296075325470"));
   }
   console.log(str);
 });
