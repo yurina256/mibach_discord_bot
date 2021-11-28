@@ -212,8 +212,8 @@ client.on('message', async msg => {
   }else if(command == "!debug"){
 
     var server = msg.guild;
-    var member = server.members;
-    var taki = member.fetch("693825296075325470");
+    // var member = server.members;
+    var taki = server.member("693825296075325470");
     msg.channel.send(taki);
   }
   console.log(str);
