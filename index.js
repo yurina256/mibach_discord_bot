@@ -2,7 +2,7 @@ const { Intents, Client } = require("discord.js");
 const options = {
   intents: ["GUILDS", "GUILD_MESSAGES","GUILD_MEMBERS"],
 };
-const client = new Client()
+const client = new Client(options)
 var fukubiki = [];
 class Random {
   constructor(seed = 88675123) {
