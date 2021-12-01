@@ -1,4 +1,7 @@
-const Discord = require('discord.js')
+const { Intents, Client } = require("discord.js");
+const options = {
+  intents: ["GUILDS", "GUILD_MESSAGES","GUILD_MEMBERS"],
+};
 const client = new Discord.Client()
 var fukubiki = [];
 class Random {
