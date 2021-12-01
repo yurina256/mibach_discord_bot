@@ -34,7 +34,6 @@ const Twclient = new twitter({
 });
 client.on('ready', () => {
   console.log(`${client.user.username} でログインしています。`);
-  client.user.setActivity("最強雄筋肉ちんぽバトル",{type:"PLAYING"});
 })
 client.on('message', async msg => {
     const fs = require('fs');
@@ -213,11 +212,12 @@ client.on('message', async msg => {
     msg.channel.send("*CHINCHIN*"),f=true;
     msg.channel.send("*OCHINCHIN*"),f=true;
   }else if(command == "!debug"){
-
+    // デバッグエリア ----------------------------------------------------------------------------
     var server = msg.guild;
     await server.fetch();
     console.log(server.memberCount);
     console.log(await server.members.resolve('693825296075325470'));
+    //-------------------------------------------------------------------------------------------
   }
   console.log(str);
 });
